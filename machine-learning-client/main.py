@@ -1,6 +1,6 @@
+import time
 import cv2
 import mediapipe as mp
-import time
 cap = cv2.VideoCapture(0)
 
 mpHands = mp.solutions.hands
@@ -10,8 +10,8 @@ hands = mpHands.Hands(static_image_mode=False,
                       min_tracking_confidence=0.5)
 mpDraw = mp.solutions.drawing_utils
 
-pTime = 0
-cTime = 0
+P_TIME = 0
+C_TIME = 0
 
 while True:
     success, img = cap.read()
@@ -31,9 +31,9 @@ while True:
             mpDraw.draw_landmarks(img, handLms, mpHands.HAND_CONNECTIONS)
 
 
-    cTime = time.time()
-    fps = 1/(cTime-pTime)
-    pTime = cTime
+    C_TIME = time.time()
+    fps = 1/(C_TIME-P_TIME)
+    P_TIME = C_TIME
 
     cv2.putText(img,str(int(fps)), (10,70), cv2.FONT_HERSHEY_PLAIN, 3, (255,0,255), 3)
 
