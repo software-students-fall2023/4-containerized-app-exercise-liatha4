@@ -14,8 +14,15 @@ def upload():
     if file.filename == '':
         return redirect(request.url)
     if file:
-        # Add machine learning model processing here
-        return redirect(url_for('index'))
+        # Code to read the image and preprocess it for the model
+        
+        # prediction = is_hotdog(processed_image)  # Assume this returns True or False
+        # result_message = "It's a hotdog!" if prediction else "It's not a hotdog."
+        
+        # Bypassing ML model for testing
+        result_message = "Test Result: It's a hotdog!"  # Sample message
+        
+        return render_template('result.html', result=result_message)
 
 if __name__ == '__main__':
     app.run(debug=True)
