@@ -12,6 +12,7 @@ flask-cors = "*"
 numpy = "*"
 pytest = "*"
 pytest-flask = "*"
+pymongo = "*"
 
 [dev-packages]
 
