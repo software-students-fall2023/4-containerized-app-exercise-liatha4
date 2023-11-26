@@ -23,7 +23,31 @@
         xhr.onreadystatechange = function () {
           if (xhr.readyState == 4 && xhr.status == 200) {
             var response = JSON.parse(xhr.responseText);
+            console.log(response[0].dominant_emotion);
             displayResult(response);
+            var detectedEmotion = response[0].dominant_emotion;
+
+            if (detectedEmotion === "happy") {
+              window.location.href = "/happy_route";
+            } 
+            else if (detectedEmotion === "sad") {
+              window.location.href = "/sad_route";
+            }
+            else if (detectedEmotion === "fear") {
+              window.location.href = "/fear_route";
+            }
+            else if (detectedEmotion === "angry") {
+              window.location.href = "/angry_route";
+            }
+            else if (detectedEmotion === "surprised") {
+              window.location.href = "/surprised_route";
+            }
+            else if (detectedEmotion === "neutral") {
+              window.location.href = "/";
+            }
+            else {
+              console.log("Unhandled emotion: " + detectedEmotion);
+            }
           }
         };
         xhr.send(JSON.stringify({ image: imageData }));
@@ -33,6 +57,9 @@
         var resultDiv = document.getElementById("result");
         resultDiv.innerHTML =
           "<pre>" + JSON.stringify(data, null, 2) + "</pre>";
+
+        
+
       }
     </script>
   </head>
