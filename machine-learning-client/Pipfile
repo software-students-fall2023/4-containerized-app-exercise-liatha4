@@ -10,6 +10,8 @@ deepface = "*"
 pillow = "*"
 flask-cors = "*"
 numpy = "*"
+pytest = "*"
+pytest-flask = "*"
 
 [dev-packages]
 
