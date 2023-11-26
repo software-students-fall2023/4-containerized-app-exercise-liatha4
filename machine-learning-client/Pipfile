@@ -4,8 +4,12 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-mediapipe = "*"
 opencv-python = "*"
+matplotlib = "*"
+deepface = "*"
+pillow = "*"
+flask-cors = "*"
+numpy = "*"
 
 [dev-packages]
 
