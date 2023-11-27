@@ -4,19 +4,30 @@ import base64
 import cv2
 import numpy as np
 from face import process_emotion  
-import pymongo
+from pymongo import MongoClient
 from flask_cors import CORS
+from dotenv import load_dotenv
+
+
+load_dotenv()
 
 app = Flask(__name__)
 CORS(app)
 
-# client = pymongo.MongoClient("mongodb://db:27017")
-# db = client["faces"]  
-# collection = db["expressions"]     
+def get_mongo_client(uri):
+    """Create and return a MongoDB client."""
+    return MongoClient(uri)
+
+mongo_uri = os.getenv("MONGO_URI")
+client = get_mongo_client(mongo_uri)
+db = client[os.getenv("MONGO_DBNAME")]
+facedata = db.facedata
 
 @app.route("/image", methods=["POST"])
 def upload_image():
     """Route for parsing image received from webcam into expression data"""
+    print(os.getenv("MONGO_URI"))
+    print(os.getenv("MONGO_DBNAME"))
     data = request.json
     if not data or "image" not in data:
         return "No image data", 400
@@ -29,8 +40,8 @@ def upload_image():
     emotion_result = process_emotion(img)
 
     try:
-        # document = {"output": emotion_result}
-        # collection.insert_one(document)
+        document = {"output": emotion_result}
+        facedata.insert_one(document)
         return jsonify(emotion_result), 200
     except Exception as e:
         print(f"Error: {e}")

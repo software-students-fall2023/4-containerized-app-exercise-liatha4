@@ -1,24 +1,35 @@
 version: '3'
 
 services:
-  machine-learning-client:
-    build: ./machine-learning-client
-    ports:
-      - "3000:3000"
-    depends_on:
-      - mongo
-
-  web-app:
-    build: ./web-app
-    ports:
-     - "3001:3001"
-    depends_on:
-      - "machine-learning-client"
-
-  mongo:
+  mongodb:
     image: mongo
     ports:
       - "27017:27017"
+
+  machine-learning-client:
+    build:
+      context: .
+      dockerfile: Dockerfile.mlc
+    ports:
+      - "3000:3000"
     environment:
-      MONGO_INITDB_ROOT_USERNAME: root
-      MONGO_INITDB_ROOT_PASSWORD: admin
+      - MONGO_URI=mongodb://mongodb:27017
+      - MONGO_DBNAME=expressions
+    depends_on:
+      - mongodb
+
+  web-app:
+    build:
+      context: .
+      dockerfile: Dockerfile.web
+    ports:
+     - "3001:3001"
+    environment:
+      - MONGO_URI=mongodb://mongodb:27017
+      - MONGO_DBNAME=expressions
+    depends_on:
+      - mongodb
+
+    
+
+  

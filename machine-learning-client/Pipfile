@@ -13,6 +13,7 @@ numpy = "*"
 pytest = "*"
 pytest-flask = "*"
 pymongo = "*"
+python-dotenv = "*"
 
 [dev-packages]
 

@@ -4,10 +4,16 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-flask = "*"
-python-dotenv = "*"
-mediapipe = "*"
+opencv-python = "*"
+matplotlib = "*"
+deepface = "*"
+pillow = "*"
 flask-cors = "*"
+numpy = "*"
+pytest = "*"
+pytest-flask = "*"
+pymongo = "*"
+python-dotenv = "*"
 
 [dev-packages]
 
