@@ -11,6 +11,8 @@ a plain-language description of your project, including:
 
 ## Configuration Instructions
 - instructions for how to configure and run all parts of your project for any developer on any platform - these instructions must work!
+run
+```docker-compose up --build```
 
 ## Database Set-up Instructions
 - instructions for how to import any starter data into the database, if necessary for the system to operate correctly at first.

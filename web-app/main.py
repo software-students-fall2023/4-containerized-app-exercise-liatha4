@@ -1,7 +1,23 @@
 from flask import Flask, render_template
 from flask_cors import CORS
+from pymongo import MongoClient
+from flask_cors import CORS
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
+
 app = Flask(__name__)
 CORS(app)
+
+def get_mongo_client(uri):
+    """Create and return a MongoDB client."""
+    return MongoClient(uri)
+
+mongo_uri = os.getenv("MONGO_URI")
+client = get_mongo_client(mongo_uri)
+db = client[os.getenv("MONGO_DBNAME")]
+facedata = db.facedata
 
 @app.route('/')
 def index():
@@ -26,6 +42,12 @@ def surprised():
 @app.route('/fear_route')
 def fear():
     return render_template("fear.html")
+
+@app.route('/expressions')
+def expressions():
+    data = facedata.find()
+    return render_template("expressions.html",data=data)
+    
 
 if __name__ == '__main__':
     app.run(debug=True, host="0.0.0.0", port=3001)  

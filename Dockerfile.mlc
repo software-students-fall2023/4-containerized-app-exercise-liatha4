@@ -7,10 +7,17 @@ RUN apt-get update \
     && rm -rf /var/lib/apt/lists/*
 
 
-COPY . .
+COPY requirements.txt .
 
 RUN pip install --no-cache-dir -r requirements.txt
 
+COPY machine-learning-client/ .
+
+
 EXPOSE 3000
+
+ENV MONGO_URI=mongodb://mongodb:27017
+
+ENV MONGO_DBNAME=expressions
 
 CMD ["python", "main.py"]
