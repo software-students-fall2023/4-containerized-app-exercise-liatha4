@@ -5,12 +5,12 @@ processes the image data/emotions, and sends it to front-end as well.
 import os
 import base64
 from flask import Flask, request, jsonify
-from cv2 import cv2
+import cv2
 import numpy as np
-from face import process_emotion
 from pymongo import MongoClient
 from flask_cors import CORS
 from dotenv import load_dotenv
+from face import process_emotion
 
 
 load_dotenv()
@@ -39,7 +39,7 @@ def upload_image():
     image_data = data["image"]
     encoded_data = image_data.split(',')[1]
     nparr = np.frombuffer(base64.b64decode(encoded_data), np.uint8)
-    img = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
+    img = cv2.imdecode(nparr, cv2.IMREAD_COLOR)  # pylint: disable=no-member
 
     emotion_result = process_emotion(img)
 
@@ -47,7 +47,7 @@ def upload_image():
         document = {"output": emotion_result}
         facedata.insert_one(document)
         return jsonify(emotion_result), 200
-    except Exception as generic_error:
+    except Exception as generic_error: # pylint: disable=broad-except
         print(f"Error: {generic_error}")
         return jsonify({"error": str(generic_error)}), 500
 
