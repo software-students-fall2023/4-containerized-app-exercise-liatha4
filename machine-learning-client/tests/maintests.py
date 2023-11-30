@@ -4,7 +4,7 @@ import base64
 import cv2
 import numpy as np
 from face import process_emotion
-from main import app  # Import the Flask app
+from main import app  
 
 @pytest.fixture
 def client():
@@ -12,7 +12,7 @@ def client():
         yield client
 
 def test_process_emotion():
-    img = cv2.imread("test_face.jpg")
+    img = cv2.imread("./test_face.jpg")
     result = process_emotion(img)
     assert isinstance(result, list), "Result is not a list"
 
