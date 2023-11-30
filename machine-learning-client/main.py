@@ -26,8 +26,6 @@ facedata = db.facedata
 @app.route("/image", methods=["POST"])
 def upload_image():
     """Route for parsing image received from webcam into expression data"""
-    print(os.getenv("MONGO_URI"))
-    print(os.getenv("MONGO_DBNAME"))
     data = request.json
     if not data or "image" not in data:
         return "No image data", 400
