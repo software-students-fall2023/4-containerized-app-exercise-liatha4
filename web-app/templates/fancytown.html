@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>How are you feeling?</title>
+    <link rel="stylesheet" href="https://unpkg.com/98.css" />
+    <script>
+      function sendImage() {
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "http://localhost:3001/upload", true);
+        xhr.setRequestHeader("Content-Type", "application/json");
+        xhr.send();
+        window.location.reload();
+      }
+    </script>
+
+  </head>
+  <body>
+    <style>
+      body {
+          background-color: #6c6c6c;
+      }
+      #boss{
+        width=800px;
+      }
+  </style>
+    <button id="boss"><a href="{{ url_for('expressions') }}">gallery</a></button>
+    <video id="videoElement" autoplay></video>
+    <button onclick="sendImage()">Are you looking fancy?</button>
+    {% for fancy in fancies %}
+      <div class="window" style="width: 300px">
+        <div class="title-bar">
+          <div class="title-bar-text">looking?</div>
+          <div class="title-bar-controls">
+            <button aria-label="Minimize"></button>
+            <button aria-label="Maximize"></button>
+            <button aria-label="Close"></button>
+          </div>
+        </div>
+        <div class="window-body">
+            <p>{{fancy.feeling}}</p>
+          </div>
+      </div>
+    {% endfor %}
+
+
+    <script>
+      var video = document.querySelector("#videoElement");
+      if (navigator.mediaDevices.getUserMedia) {
+        navigator.mediaDevices
+          .getUserMedia({ video: true })
+          .then(function (stream) {
+            video.srcObject = stream;
+          })
+          .catch(function (error) {
+            console.log("Something went wrong!");
+          });
+      }
+    </script>
+  </body>
+</html>
