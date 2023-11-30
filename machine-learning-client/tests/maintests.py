@@ -12,7 +12,7 @@ def client():
         yield client
 
 def test_process_emotion():
-    img = cv2.imread("./test_face.jpg")
+    img = cv2.imread("./test_face.png")
     result = process_emotion(img)
     assert isinstance(result, list), "Result is not a list"
 
