@@ -5,7 +5,6 @@ processes the image data/emotions, and sends it to front-end as well.
 import os
 import base64
 from flask import Flask, request, jsonify
-
 # pylint: disable=import-error
 import cv2
 import numpy as np
@@ -38,10 +37,11 @@ def get_mongo_client(uri):
     return MongoClient(uri)
 
 
-mongo_uri = os.getenv("MONGO_URI")
-client = get_mongo_client(mongo_uri)
-db = client[os.getenv("MONGO_DBNAME")]
-facedata = db.facedata
+def get_db():
+    """Get the MongoDB database."""
+    mongo_uri = os.getenv("MONGO_URI")
+    client = get_mongo_client(mongo_uri)
+    return client[os.getenv("MONGO_DBNAME")]
 
 
 @app.route("/image", methods=["POST"])
@@ -60,6 +60,8 @@ def upload_image():
     emotion_result = process_emotion(img)
 
     try:
+        db =  get_db()
+        facedata = db.facedata
         document = {"output": emotion_result}
         facedata.insert_one(document)
         return jsonify(emotion_result), 200
