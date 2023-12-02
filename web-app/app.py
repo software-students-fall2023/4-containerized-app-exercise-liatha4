@@ -25,11 +25,12 @@ def get_mongo_client(uri):
     return MongoClient(uri)
 
 
-mongo_uri = os.getenv("MONGO_URI")
-client = get_mongo_client(mongo_uri)
-db = client[os.getenv("MONGO_DBNAME")]
-fancy = db.fancies
-facedata = db.facedata
+def get_db():
+    """Get the MongoDB database."""
+    mongo_uri = os.getenv("MONGO_URI")
+    client = get_mongo_client(mongo_uri)
+    return client[os.getenv("MONGO_DBNAME")]
+
 
 
 @app.route("/")
@@ -86,7 +87,8 @@ def expressions():
     Page for accessing the emotional data from facial scans.
     Pulls from mongodb
     """
-    data = facedata.find()
+    db = get_db()
+    data = db.facedata.find()
     return render_template("expressions.html", data=data)
 
 
@@ -97,6 +99,8 @@ def fancytown():
     them they are looking fancy.
     Pulls from mongodb
     """
+    db = get_db()
+    fancy = db.fancy
     fancies = fancy.find({})
     return render_template("fancytown.html", fancies=fancies)
 
@@ -107,6 +111,8 @@ def upload_image():
     A route for uploading a fancy message
     """
     document = {"feeling": "fancy"}
+    db = get_db()
+    fancy = db.fancy
     fancy.insert_one(document)
     fancies = fancy.find({})
     print(fancies)
