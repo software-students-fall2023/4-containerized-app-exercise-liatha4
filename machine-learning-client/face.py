@@ -3,6 +3,7 @@ This file provides a simple emotion read.
 """
 from deepface import DeepFace
 
+
 def process_emotion(img):
     """
     This function processes the emotion from the camera image and returns the emotion.
@@ -10,5 +11,5 @@ def process_emotion(img):
     :return: returns the emotion
     :rtype: str
     """
-    result = DeepFace.analyze(img,actions=['emotion'])
+    result = DeepFace.analyze(img, actions=["emotion"])
     return result

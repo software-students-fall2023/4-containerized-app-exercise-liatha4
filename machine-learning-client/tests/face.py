@@ -1,7 +1,17 @@
-# simple emotion read
-import cv2 
-from deepface import DeepFace 
+""" 
+Middle-man test module
+"""
+from deepface import DeepFace
+
 
 def process_emotion(img):
-    result = DeepFace.analyze(img,actions=['emotion']) 
+    """
+    Simple function for running the DeepFace Package
+    Args:
+        img (string): path to an image 
+
+    Returns:
+       dictionary: dictionary of information about emotions in image
+    """
+    result = DeepFace.analyze(img, actions=["emotion"])
     return result
