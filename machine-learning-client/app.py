@@ -53,7 +53,7 @@ def upload_image():
     image_data = data["image"]
     encoded_data = image_data.split(",")[1]
     nparr = np.frombuffer(base64.b64decode(encoded_data), np.uint8)
-    # pylint: disable=c-extension-no-member
+    # pylint: disable=c-extension-no-member,no-member
     img = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
 
     emotion_result = process_emotion(img)
