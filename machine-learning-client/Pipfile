@@ -17,6 +17,9 @@ python-dotenv = "*"
 flake8 = "*"
 black = "*"
 pylint = "*"
+from = "*"
+"unittest.mock" = "*"
+import = "*"
 
 [dev-packages]
 

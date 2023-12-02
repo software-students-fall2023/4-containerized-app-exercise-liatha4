@@ -6,19 +6,30 @@ import os
 import base64
 from flask import Flask, request, jsonify
 # pylint: disable=import-error
-from cv2 import cv2
+import cv2
 import numpy as np
 import pymongo
 from pymongo import MongoClient
 from flask_cors import CORS
 from dotenv import load_dotenv
-from face import process_emotion
+from deepface import DeepFace
 
 
 load_dotenv()
 
 app = Flask(__name__)
 CORS(app)
+
+
+def process_emotion(img):
+    """
+    This function processes the emotion from the camera image and returns the emotion.
+    :param arg1: image
+    :return: returns the emotion
+    :rtype: str
+    """
+    result = DeepFace.analyze(img, actions=["emotion"])
+    return result
 
 
 def get_mongo_client(uri):
