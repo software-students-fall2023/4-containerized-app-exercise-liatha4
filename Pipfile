@@ -4,7 +4,20 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
+opencv-python = "*"
+matplotlib = "*"
+deepface = "*"
+pillow = "*"
+flask-cors = "*"
+numpy = "*"
+pytest = "*"
+pytest-flask = "*"
+pymongo = "*"
+python-dotenv = "*"
+flake8 = "*"
+black = "*"
 pylint = "*"
+mongomock = "*"
 
 [dev-packages]
 

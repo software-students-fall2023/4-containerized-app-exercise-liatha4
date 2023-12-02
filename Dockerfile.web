@@ -14,4 +14,4 @@ ENV MONGO_URI=mongodb://mongodb:27017
 
 ENV MONGO_DBNAME=expressions
 
-CMD ["python", "main.py"]
+CMD ["python", "app.py"]
