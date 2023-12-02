@@ -5,6 +5,7 @@ processes the image data/emotions, and sends it to front-end as well.
 import os
 import base64
 from flask import Flask, request, jsonify
+
 # pylint: disable=import-error
 import cv2
 import numpy as np

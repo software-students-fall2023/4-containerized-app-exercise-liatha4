@@ -34,7 +34,7 @@ facedata = db.facedata
 
 @app.route("/")
 def index():
-    """ 
+    """
     Default page
     """
     return render_template("index.html")
@@ -42,7 +42,7 @@ def index():
 
 @app.route("/happy_route")
 def happy():
-    """ 
+    """
     Page for happy users
     """
     return render_template("happy.html")
@@ -50,7 +50,7 @@ def happy():
 
 @app.route("/sad_route")
 def sad():
-    """ 
+    """
     Page for sad users
     """
     return render_template("sad.html")
@@ -58,7 +58,7 @@ def sad():
 
 @app.route("/angry_route")
 def angry():
-    """ 
+    """
     Page for angry users
     """
     return render_template("angry.html")
@@ -66,7 +66,7 @@ def angry():
 
 @app.route("/surprised_route")
 def surprised():
-    """ 
+    """
     Page for surprised users
     """
     return render_template("surprised.html")
@@ -74,7 +74,7 @@ def surprised():
 
 @app.route("/fear_route")
 def fear():
-    """ 
+    """
     Page for scared users
     """
     return render_template("fear.html")
@@ -82,7 +82,7 @@ def fear():
 
 @app.route("/expressions")
 def expressions():
-    """ 
+    """
     Page for accessing the emotional data from facial scans.
     Pulls from mongodb
     """
@@ -92,8 +92,8 @@ def expressions():
 
 @app.route("/fancytown")
 def fancytown():
-    """ 
-    A Page for users to look at themselves and press a button that tells 
+    """
+    A Page for users to look at themselves and press a button that tells
     them they are looking fancy.
     Pulls from mongodb
     """
@@ -103,7 +103,7 @@ def fancytown():
 
 @app.route("/upload", methods=["POST"])
 def upload_image():
-    """ 
+    """
     A route for uploading a fancy message
     """
     document = {"feeling": "fancy"}
