@@ -17,6 +17,7 @@ jobs:
           python -m pip install pipenv
           pipenv sync --dev --python $(which python)
           pipenv shell --fancy --python $(which python)
+          pipenv install
       - name: Lint with pylint
         if: ${{ hashFiles('**/*.py') != '' }}
         run: |
