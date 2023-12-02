@@ -32,7 +32,6 @@ def get_db():
     return client[os.getenv("MONGO_DBNAME")]
 
 
-
 @app.route("/")
 def index():
     """

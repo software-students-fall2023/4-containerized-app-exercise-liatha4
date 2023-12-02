@@ -5,6 +5,7 @@ processes the image data/emotions, and sends it to front-end as well.
 import os
 import base64
 from flask import Flask, request, jsonify
+
 # pylint: disable=import-error
 import cv2
 import numpy as np
@@ -60,7 +61,7 @@ def upload_image():
     emotion_result = process_emotion(img)
 
     try:
-        db =  get_db()
+        db = get_db()
         facedata = db.facedata
         document = {"output": emotion_result}
         facedata.insert_one(document)

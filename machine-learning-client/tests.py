@@ -1,18 +1,20 @@
 """ 
 Testing File For ML Client using Flask Application
 """
-from unittest.mock import MagicMock
+
 import json
 import pytest
+
 # pylint: disable=import-error
 import cv2
 from app import app, process_emotion
 
 
+# pylint: disable=pointless-string-statement
+""" Testing Class """
 
-"""
-Test class 
-"""
+
+# pylint: disable=missing-class-docstring
 class Tests:
     @pytest.fixture
     def client(self):
@@ -22,15 +24,6 @@ class Tests:
         app.config["TESTING"] = True
         with app.test_client() as client:
             yield client
-
-    @pytest.fixture
-    def mock_mongo_client(self, monkeypatch):
-        """
-        Set up fake mongo client
-        """
-        mock_client = MagicMock()
-        monkeypatch.setattr("app.get_mongo_client", lambda uri: mock_client)
-        return mock_client
 
     def test_process_emotion(self):
         """
