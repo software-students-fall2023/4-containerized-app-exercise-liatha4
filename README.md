@@ -23,6 +23,7 @@ buttons, and the web-app will save data in the 'fancy-town' route, via pressing 
 
 ## Configuration Instructions
 Pull from Docker Hub: `docker pull ayl2015/emotionsapp:v1.0`
+
 To run the project:
 - clone the repository, and make sure Docker is installed
 - run  `docker-compose up --build` in the main directory
